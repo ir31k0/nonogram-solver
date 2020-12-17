@@ -37,14 +37,6 @@ public interface Algorithm {
         return numbers.stream().mapToInt(Integer::intValue).sum();
     }
 
-    default int sum(Field[] line, Field searchFor) {
-        int sum = 0;
-        for (Field field : line) {
-            if (field.equals(searchFor)) ++sum;
-        }
-        return sum;
-    }
-
     /**
      * Counts a specific field type in line.
      *

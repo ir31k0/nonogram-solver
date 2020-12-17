@@ -7,10 +7,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The algorithm loader loads all algorithms over reflection and holds them.
+ * This is structured according to the singleton pattern. To get an instance, use the {@link #getInstance()} method.
+ */
 public class AlgorithmLoader {
     private static final AlgorithmLoader holder = new AlgorithmLoader();
 
+    /** Holds all one time algorithms */
     private final List<OneTimeAlgorithm> oneTimeAlgorithms;
+
+    /** Holds all multiple time algorithms */
     private final List<MultipleTimeAlgorithm> multipleTimeAlgorithms;
 
     private AlgorithmLoader() {
@@ -19,6 +26,15 @@ public class AlgorithmLoader {
         multipleTimeAlgorithms = createAlgorithms(reflections.getSubTypesOf(MultipleTimeAlgorithm.class));
     }
 
+    /**
+     * Creates an instance of the given algorithm classes.
+     *
+     * Ignores class that flagged with {@link DisabledAlgorithm}.
+     *
+     * @param algorithmClasses collection of algorithm classes
+     * @param <T> type of algorithm e.g. {@link OneTimeAlgorithm}, {@link MultipleTimeAlgorithm}
+     * @return list with instances
+     */
     private <T extends Algorithm> List<T> createAlgorithms(Collection<Class<? extends T>> algorithmClasses) {
         List<T> algorithms = new ArrayList<>();
         for (Class<? extends T> algorithm : algorithmClasses) {
@@ -32,6 +48,13 @@ public class AlgorithmLoader {
         return algorithms;
     }
 
+    /**
+     * Creates an instance of given algorithm class.
+     *
+     * @param algorithmClass the algorithm class
+     * @param <T> type of algorithm
+     * @return new instance of algorithm
+     */
     private <T extends Algorithm> T createAlgorithm(Class<T> algorithmClass) {
         try {
             return algorithmClass.getConstructor().newInstance();
@@ -40,6 +63,11 @@ public class AlgorithmLoader {
         }
     }
 
+    /**
+     * Gets the singleton instance of the algorithm loader.
+     *
+     * @return the instance
+     */
     public static AlgorithmLoader getInstance() {
         return holder;
     }

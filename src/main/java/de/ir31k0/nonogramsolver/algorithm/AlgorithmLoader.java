@@ -12,7 +12,8 @@ import java.util.List;
  * This is structured according to the singleton pattern. To get an instance, use the {@link #getInstance()} method.
  */
 public class AlgorithmLoader {
-    private static final AlgorithmLoader holder = new AlgorithmLoader();
+    /** The singleton instance of the algorithm loader */
+    private static final AlgorithmLoader loader = new AlgorithmLoader();
 
     /** Holds all one time algorithms */
     private final List<OneTimeAlgorithm> oneTimeAlgorithms;
@@ -27,6 +28,15 @@ public class AlgorithmLoader {
     }
 
     /**
+     * Gets the singleton instance of the algorithm loader.
+     *
+     * @return the instance
+     */
+    public static AlgorithmLoader getInstance() {
+        return loader;
+    }
+
+    /**
      * Creates an instance of the given algorithm classes.
      *
      * Ignores class that flagged with {@link DisabledAlgorithm}.
@@ -38,11 +48,11 @@ public class AlgorithmLoader {
     private <T extends Algorithm> List<T> createAlgorithms(Collection<Class<? extends T>> algorithmClasses) {
         List<T> algorithms = new ArrayList<>();
         for (Class<? extends T> algorithm : algorithmClasses) {
-            Algorithm instance = createAlgorithm(algorithm);
+            T instance = createAlgorithm(algorithm);
             if (instance instanceof DisabledAlgorithm) {
                 System.out.println(instance.getClass().getSimpleName() + " is disabled. To enable the algorithm, remove the " + DisabledAlgorithm.class.getSimpleName());
             } else {
-                algorithms.add((T) instance);
+                algorithms.add(instance);
             }
         }
         return algorithms;
@@ -59,17 +69,8 @@ public class AlgorithmLoader {
         try {
             return algorithmClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new RuntimeException("Cannot instantiate algorithm class " + algorithmClass.getName());
+            throw new RuntimeException("Cannot instantiate algorithm class " + algorithmClass.getSimpleName());
         }
-    }
-
-    /**
-     * Gets the singleton instance of the algorithm loader.
-     *
-     * @return the instance
-     */
-    public static AlgorithmLoader getInstance() {
-        return holder;
     }
 
     public List<OneTimeAlgorithm> getOneTimeAlgorithms() {

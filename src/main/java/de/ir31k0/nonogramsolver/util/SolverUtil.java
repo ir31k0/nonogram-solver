@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Some util functionalities.
+ */
 public class SolverUtil {
     public static boolean isLineComplete(Field[] line) {
         for (Field field : line) {
@@ -20,6 +23,13 @@ public class SolverUtil {
         return true;
     }
 
+    /**
+     * Creates a nonogram instance by the given .nono file.
+     *
+     * @param file .nono file
+     * @return the nonogram instance
+     * @throws IOException on IO errors when trying to read the file
+     */
     public static Nonogram fromFile(File file) throws IOException {
         List<String> lines = Files.lines(file.toPath()).collect(Collectors.toCollection(ArrayList::new));
 
@@ -51,10 +61,22 @@ public class SolverUtil {
         return new Nonogram(width, height, horizontalNumbers, verticalNumbers);
     }
 
+    /**
+     * Parses the given description of numbers of a row.
+     *
+     * @param s row description
+     * @return numbers as list
+     */
     private static List<Integer> parseRowDesc(String s) {
         return Arrays.stream(s.split(",")).map(Integer::parseInt).filter(i -> i > 0).collect(Collectors.toList());
     }
 
+    /**
+     * Generates a json string of board.
+     *
+     * @param board the board
+     * @return board as json
+     */
     public static String makeJson(Field[][] board) {
         return new Gson().toJson(board);
     }

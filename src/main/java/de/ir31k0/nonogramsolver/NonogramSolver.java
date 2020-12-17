@@ -9,9 +9,15 @@ import de.ir31k0.nonogramsolver.exception.IllegalFieldException;
 
 import java.util.Collection;
 
+/**
+ * The nonogram solver base code class.
+ */
 public class NonogramSolver {
 
+    /** The nonogram to solve */
     private final Nonogram nonogram;
+
+    /** Instance of algorithm loader */
     private final AlgorithmLoader algorithmLoader;
 
     public NonogramSolver(Nonogram nonogram) {
@@ -19,12 +25,21 @@ public class NonogramSolver {
         algorithmLoader = AlgorithmLoader.getInstance();
     }
 
+    /**
+     * Runs the nonogram solver.
+     *
+     * @return the solved board
+     * @throws IllegalFieldException if a field conflict occurs
+     */
     public Field[][] run() throws IllegalFieldException {
         executeAlgorithms(algorithmLoader.getOneTimeAlgorithms());
         while (executeAlgorithms(algorithmLoader.getMultipleTimeAlgorithms()));
         return nonogram.getBoard();
     }
 
+    /**
+     * Prints the board in the console.
+     */
     public void printBoard() {
         for (int y = 0; y < nonogram.getHeight(); y++) {
             String[] line = new String[nonogram.getWidth()];
@@ -35,6 +50,13 @@ public class NonogramSolver {
         }
     }
 
+    /**
+     * Executes the given collection of algorithms once with each line (horizontal and vertical).
+     *
+     * @param algorithms collection of algorithms
+     * @return true if one algorithm made a change, otherwise false
+     * @throws IllegalFieldException if a field conflict occurs
+     */
     private boolean executeAlgorithms(Collection<? extends Algorithm> algorithms) throws IllegalFieldException {
         boolean change = false;
         System.out.println("horizontal");

@@ -41,13 +41,13 @@ public interface Algorithm {
      * Counts a specific field type in line.
      *
      * @param line the line
-     * @param toCount the field type to count
+     * @param searchFor the field type to count
      * @return the number of fields searched
      */
-    default int count(Field[] line, Field toCount) {
+    default int count(Field[] line, Field searchFor) {
         int count = 0;
         for (Field field : line) {
-            if (field.equals(toCount)) ++count;
+            if (field.equals(searchFor)) ++count;
         }
         return count;
     }

@@ -13,8 +13,8 @@ public class EmptyFieldMarkerIfAllNumbersKnownAlgorithm implements MultipleTimeA
     @Override
     public Field[] runOverLine(Field[] line, List<Integer> numbers) {
         int sumNumbers = sum(numbers);
-        int sumFilledFields = sum(line, Field.FILLED);
-        if (sumNumbers == sumFilledFields) {
+        int countFilledFields = count(line, Field.FILLED);
+        if (sumNumbers == countFilledFields) {
             fillAllUnknownFields(line, Field.EMPTY);
         }
         return line;

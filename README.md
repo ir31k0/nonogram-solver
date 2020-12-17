@@ -11,11 +11,12 @@ A nonogram is a logic puzzle like sudoku.
 
 ## TODO List
 - [ ] more algorithms
-- [ ] JavaDoc
 - [ ] more tests
 - [ ] clean up code
 - [ ] check if a line is already solved
 - [ ] result or exception at the end of the solver
+- [ ] code formatting / style rules
+- [X] most of JavaDoc
 
 ## Development
 Import the maven project in your favorite IDE and start.

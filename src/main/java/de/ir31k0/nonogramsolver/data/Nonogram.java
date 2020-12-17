@@ -196,7 +196,7 @@ public class Nonogram {
                 board[x][y] = newField;
                 change = true;
             } else {
-                throw new IllegalFieldException("Can not update");
+                throw new IllegalFieldException("Cannot update " + boardField.name() + " field with " + newField.name());
             }
         }
         return change;

@@ -26,19 +26,12 @@ public class NonogramSolver {
     }
 
     public void printBoard() {
-        String[] board = new String[nonogram.getHeight()];
         for (int y = 0; y < nonogram.getHeight(); y++) {
+            String[] line = new String[nonogram.getWidth()];
             for (int x = 0; x < nonogram.getWidth(); x++) {
-                Field field = nonogram.getField(x, y);
-                if (Field.UNKNOWN.equals(field)) {
-                    System.out.print(" _ ");
-                } else if (Field.FILLED.equals(field)) {
-                    System.out.print(" ■ ");
-                } else {
-                    System.out.print(" X ");
-                }
+                line[x] = nonogram.getField(x, y).getCharacter();
             }
-            System.out.println();
+            System.out.println(String.join(" ", line));
         }
     }
 

@@ -6,6 +6,12 @@ import de.ir31k0.nonogramsolver.util.SolverUtil;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Starter class to run the nonogram solver.
+ *
+ * Required passable parameters:
+ * file path:       Path to the .nono file
+ */
 public class NonogramSolverStarter {
     public static void main(String[] args) throws IllegalFieldException, IOException {
         if (args.length != 1) {

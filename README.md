@@ -3,6 +3,12 @@ A nonogram solver written in Java.
 
 [![Status](https://img.shields.io/badge/Status-IN%20DEVELOPMENT-brightgreen)](https://shields.io/)
 
+## What is a nonogram?
+A nonogram is a logic puzzle like sudoku.
+
+[Wikipedia](https://en.wikipedia.org/wiki/Nonogram):
+> Nonograms, also known as Paint by Numbers, Picross, Griddlers, Pic-a-Pix, and various other names, are picture logic puzzles in which cells in a grid must be colored or left blank according to numbers at the side of the grid to reveal a hidden picture. In this puzzle type, the numbers are a form of discrete tomography that measures how many unbroken lines of filled-in squares there are in any given row or column. For example, a clue of "4 8 3" would mean there are sets of four, eight, and three filled squares, in that order, with at least one blank square between successive sets. These puzzles are often black and white—describing a binary image—but they can also be colored. If colored, the number clues are also colored to indicate the color of the squares. Two differently colored numbers may or may not have a space in between them. For example, a black four followed by a red two could mean four black boxes, some empty spaces, and two red boxes, or it could simply mean four black boxes followed immediately by two red ones. Nonograms have no theoretical limits on size, and are not restricted to square layouts. Nonograms were named after Non Ishida, one of the two inventors of the puzzle.
+
 ## TODO List
 - [ ] more algorithms
 - [ ] JavaDoc

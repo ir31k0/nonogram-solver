@@ -1,6 +1,5 @@
 package de.ir31k0.nonogramsolver;
 
-import de.daniel.nonogramsolver.algorithm.*;
 import de.ir31k0.nonogramsolver.algorithm.Algorithm;
 import de.ir31k0.nonogramsolver.algorithm.AlgorithmLoader;
 import de.ir31k0.nonogramsolver.data.Field;

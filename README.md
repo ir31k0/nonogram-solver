@@ -18,6 +18,11 @@ A nonogram is a logic puzzle like sudoku.
 - [ ] code formatting / style rules
 - [X] most of JavaDoc
 
+## In consideration
+- use of Lombok
+- write a rest endpoint / run on a server
+- write a generic version
+
 ## Development
 Import the maven project in your favorite IDE and start.
 

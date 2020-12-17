@@ -69,7 +69,7 @@ public class SolverUtil {
      * @param board the board
      * @return board as json
      */
-    public static String makeJson(Field[][] board) {
+    public static String generateJson(Field[][] board) {
         return new Gson().toJson(board);
     }
 }

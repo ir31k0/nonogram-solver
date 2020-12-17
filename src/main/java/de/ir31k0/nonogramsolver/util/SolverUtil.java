@@ -14,14 +14,6 @@ import java.util.stream.Collectors;
  * Some util functionalities.
  */
 public class SolverUtil {
-    public static boolean isLineComplete(Field[] line) {
-        for (Field field : line) {
-            if (field == Field.EMPTY) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Creates a nonogram instance by the given .nono file.

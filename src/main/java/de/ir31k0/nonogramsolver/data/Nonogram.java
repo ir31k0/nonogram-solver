@@ -171,7 +171,7 @@ public class Nonogram {
     public boolean updateHorizontalLine(int y, Field[] horizontalLine) throws IllegalFieldException {
         boolean change = false;
         for (int x = 0; x < width; x++) {
-            if (updateLine(x, y, x, horizontalLine)) {
+            if (updateField(x, y, horizontalLine[x])) {
                 change = true;
             }
         }
@@ -189,7 +189,7 @@ public class Nonogram {
     public boolean updateVerticalLine(int x, Field[] verticalLine) throws IllegalFieldException {
         boolean change = false;
         for (int y = 0; y < height; y++) {
-            if (updateLine(x, y, y, verticalLine)) {
+            if (updateField(x, y, verticalLine[y])) {
                 change = true;
             }
         }
@@ -201,15 +201,13 @@ public class Nonogram {
      *
      * @param x the index of row
      * @param y the index of column
-     * @param lineIndex the index of the field from the line to be updated with
-     * @param line the line with updated fields
+     * @param newField the field to be updated with
      * @return true when the line has been changed, otherwise false
      * @throws IllegalFieldException if a field conflict occurs
      */
-    private boolean updateLine(int x, int y, int lineIndex,Field[] line) throws IllegalFieldException {
+    private boolean updateField(int x, int y, Field newField) throws IllegalFieldException {
         boolean change = false;
         Field boardField = board[x][y];
-        Field newField = line[lineIndex];
         if (!boardField.equals(newField)) {
             if (Field.UNKNOWN.equals(boardField)) {
                 board[x][y] = newField;

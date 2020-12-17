@@ -35,7 +35,7 @@ public class Nonogram {
     }
 
     /**
-     * Creates a new nonogram with a board where all fields are unknown.
+     * Calls {@link Nonogram(int, int, Field[][], List, List)} and passes a blank board through.
      *
      * @param width the width of the board
      * @param height the height of the board
@@ -43,16 +43,18 @@ public class Nonogram {
      * @param verticalNumbers collection of vertical numbers
      */
     public Nonogram(int width, int height, List<List<Integer>> horizontalNumbers, List<List<Integer>> verticalNumbers) {
-        this.width = width;
-        this.height = height;
-        board = new Field[width][height];
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                board[x][y] = Field.UNKNOWN;
-            }
-        }
-        this.horizontalNumbers = horizontalNumbers;
-        this.verticalNumbers = verticalNumbers;
+        this(width, height, createABlankBoard(width, height), horizontalNumbers, verticalNumbers);
+    }
+
+    /**
+     * Calls {@link Nonogram(int, int, Field[][], List, List)} and passes the size of the board at width and height through.
+     *
+     * @param board the board
+     * @param horizontalNumbers collection of horizontal numbers
+     * @param verticalNumbers collection of vertical numbers
+     */
+    public Nonogram(Field[][] board, List<List<Integer>> horizontalNumbers, List<List<Integer>> verticalNumbers) {
+        this(board.length, board[0].length, board, horizontalNumbers, verticalNumbers);
     }
 
     /**
@@ -62,12 +64,29 @@ public class Nonogram {
      * @param horizontalNumbers collection of horizontal numbers
      * @param verticalNumbers collection of vertical numbers
      */
-    public Nonogram(Field[][] board, List<List<Integer>> horizontalNumbers, List<List<Integer>> verticalNumbers) {
+    public Nonogram(int width, int height, Field[][] board, List<List<Integer>> horizontalNumbers, List<List<Integer>> verticalNumbers) {
         this.board = board;
-        width = board.length;
-        height = board[0].length;
+        this.width = width;
+        this.height = height;
         this.horizontalNumbers = horizontalNumbers;
         this.verticalNumbers = verticalNumbers;
+    }
+
+    /**
+     * Creates a blank board where all fields are {@link Field#UNKNOWN}.
+     *
+     * @param width the width of board
+     * @param height the height of board
+     * @return created board
+     */
+    private static Field[][] createABlankBoard(int width, int height) {
+        Field[][] board = new Field[width][height];
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                board[x][y] = Field.UNKNOWN;
+            }
+        }
+        return board;
     }
 
     public Field[][] getBoard() {

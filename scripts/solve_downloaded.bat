@@ -1,0 +1,1 @@
+java -classpath ../core/target/core-0.0.1.jar;../algorithms/target/algorithms-0.0.1.jar de.ir31k0.nonogramsolver.core.NonogramSolverStarter ../nonograms/webpbn

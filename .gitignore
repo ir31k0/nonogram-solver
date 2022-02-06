@@ -1,3 +1,6 @@
+# Project specific
+*.nono
+
 # IntelliJ files
 .idea/
 *.iml
